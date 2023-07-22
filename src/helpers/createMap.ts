@@ -29,16 +29,12 @@ const createDraw = () => {
     },
     edit: {
         featureGroup: window.editableLayers,
-        remove: false
+        remove: true
     }
   }
 
   const drawControl = new L.Control.Draw(options)
   window.map.addControl(drawControl)
-
-  window.map.on(L.Draw.Event.CREATED, function (event: any) {
-    window.editableLayers.addLayer(event.layer)
-  })
 }
 
 const createShadows = () => {
@@ -65,10 +61,26 @@ const createShadows = () => {
   // }).addTo(map);
 }
 
+const drawAreaOfInterest = (areaOfInterest: any) => {
+  const jsonLayer = L.geoJSON(areaOfInterest, {
+    style: {
+      "color": "#ff7800",
+      "weight": 5,
+      "fill": false,
+      "opacity": 1
+    }
+  })
+      
+  jsonLayer.addTo(window.editableLayers)
+  window.map.fitBounds(jsonLayer.getBounds())
+}
+
 export const createMap = (document: PermaCultureDocument) => {
   const map = window.map = L.map('map', { center: [51.505, -0.09], zoom: 13 })
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map)
   
   createGeoSearch()
   createDraw()
+
+  if (document.area_of_interest) drawAreaOfInterest(document.area_of_interest)
 }
