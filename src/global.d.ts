@@ -1,7 +1,7 @@
 declare const L: any
 declare const GeoSearch: any
 
-declare global {
+export declare global {
   interface Window {
     map: any
     editableLayers: any
