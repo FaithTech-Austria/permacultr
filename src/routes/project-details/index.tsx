@@ -11,8 +11,8 @@ export default component$(() => {
         <input class="form-control" id="projectName" />
       </div>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input class="form-control" id="exampleInputPassword1" />
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" />
       </div>
 
       <AreaOfInterest />
