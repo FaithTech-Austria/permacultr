@@ -3,6 +3,7 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 import { useContextProvider, createContextId } from '@builder.io/qwik';
 import { Signal, useSignal } from '@builder.io/qwik';
 import { PermaCultureDocument } from '~/types';
+import AreaOfInterest from '~/components/AreaOfInterest/AreaOfInterest'
 
 export const DocumentContext = createContextId<Signal<PermaCultureDocument>>('document-context')
 
@@ -24,6 +25,9 @@ export default component$(() => {
         <input type="checkbox" class="form-check-input" id="exampleCheck1" />
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
       </div>
+
+      <AreaOfInterest />
+
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 

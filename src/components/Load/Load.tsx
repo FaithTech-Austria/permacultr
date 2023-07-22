@@ -21,7 +21,7 @@ export default component$(() => {
       };
       
       const [fileHandle] = await window.showOpenFilePicker(pickerOpts)
-      const writable = await fileHandle.createWritable()
+      // const writable = await fileHandle.createWritable()
       const fileData = await fileHandle.getFile()
       const projectJson = await fileData.text()
       document.value = JSON.parse(projectJson)      
