@@ -1,1 +1,0 @@
-import{DocumentContext as n}from"./q-a4653207.js";import{I as o,Y as r,h as e,j as s}from"./q-3b0cdc6e.js";const c=()=>{const t=o({name:"",description:"",area_of_interest:null});return r(n,t),e(s,null,3,"yB_0")};export{c as s_VKFlAWJuVm8};

@@ -1,1 +1,0 @@
-import{h as r}from"./q-3b0cdc6e.js";import{s as t}from"./q-9c195be0.js";import{a as s}from"./q-56568b8a.js";const c=()=>{const o=s().params.name,e=o in t?t[o].template:t.welcome.template;return r(e,null,3,"i8_0")};export{c as s_B0lqk5IDDy4};

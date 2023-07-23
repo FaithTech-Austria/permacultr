@@ -4,11 +4,6 @@ import baseConfig from "../../vite.config";
 
 export default extendConfig(baseConfig, () => {
   return {
-    experimental: {
-      renderBuiltUrl(filename: string, { hostType }: { hostType: 'js' | 'css' | 'html' }) {
-        return 'https://faithtech-austria.github.io/permacultur/' + filename
-      }
-    },
     build: {
       ssr: true,
       rollupOptions: {
@@ -17,7 +12,7 @@ export default extendConfig(baseConfig, () => {
     },
     plugins: [
       staticAdapter({
-        origin: "https://faithtech-austria.github.io/permacultur/",
+        origin: "https://faithtech-austria.github.io",
       }),
     ],
   };
