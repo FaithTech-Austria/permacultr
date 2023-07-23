@@ -1,5 +1,7 @@
 export type PermaCultureDocument = {
-  area_of_interest: null | any
+  name?: string
+  description?: string
+  area_of_interest?: any
 }
 
 export type windowState = {

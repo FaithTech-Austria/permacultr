@@ -1,12 +1,13 @@
 import { component$ } from "@builder.io/qwik";
 import { useContext } from '@builder.io/qwik';
-import { DocumentContext } from '~/routes';
+import { DocumentContext } from '~/routes/layout';
+import { Link, useNavigate } from '@builder.io/qwik-city';
 
 export default component$(() => {
   const document = useContext(DocumentContext)
-  
+  const nav = useNavigate()
   return (
-    <button onClick$={async () => {
+    <button class="btn btn-secondary" onClick$={async () => {
       const pickerOpts = {
         types: [
           {
@@ -23,7 +24,9 @@ export default component$(() => {
       const [fileHandle] = await window.showOpenFilePicker(pickerOpts)
       const fileData = await fileHandle.getFile()
       const projectJson = await fileData.text()
-      document.value = JSON.parse(projectJson)      
+      document.value = JSON.parse(projectJson)
+      nav('/project-details') 
+       
     }}>Open a project</button>
   );
 });

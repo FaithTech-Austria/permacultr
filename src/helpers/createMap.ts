@@ -61,7 +61,7 @@ const createShadows = () => {
   // }).addTo(map);
 }
 
-const drawAreaOfInterest = (areaOfInterest: any) => {
+export const drawAreaOfInterest = (areaOfInterest: any) => {
   const jsonLayer = L.geoJSON(areaOfInterest, {
     style: {
       "color": "#ff7800",
@@ -70,7 +70,11 @@ const drawAreaOfInterest = (areaOfInterest: any) => {
       "opacity": 1
     }
   })
-      
+
+  window.editableLayers.eachLayer((layer: any) => {
+    layer.remove();
+  })  
+
   jsonLayer.addTo(window.editableLayers)
   window.map.fitBounds(jsonLayer.getBounds())
 }

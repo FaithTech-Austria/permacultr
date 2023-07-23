@@ -1,4 +1,6 @@
 {
+  "name": "Example project",
+  "description": "Lorem ipsum",
   "area_of_interest": {
     "type": "FeatureCollection",
     "name": "aoi_boundary",
