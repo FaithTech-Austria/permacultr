@@ -37,29 +37,29 @@ const createDraw = () => {
   window.map.addControl(drawControl)
 }
 
-const createShadows = () => {
-  // const date = new Date()
-  // date.setHours(22, 0)
+// const createShadows = () => {
+//   // const date = new Date()
+//   // date.setHours(22, 0)
 
-  // const shadeMap = L.shadeMap({
-  //   date,    // display shadows for current date
-  //   color: '#01112f',    // shade color
-  //   opacity: 0.7,        // opacity of shade color
-  //   apiKey: "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1haWxAZGFuaWVsYmVla2UubmwiLCJjcmVhdGVkIjoxNjg5OTczODgwNzkyLCJpYXQiOjE2ODk5NzM4ODB9.ncHt7P0kGdSNjbmVwWKWJ-c_mTstyPq55h7h_FUoU5s",    // obtain from https://shademap.app/about/
-  //   terrainSource: {
-  //     tileSize: 256,       // DEM tile size
-  //     maxZoom: 15,         // Maximum zoom of DEM tile set
-  //     getSourceUrl: ({ x, y, z }) => {
-  //       // return DEM tile url for given x,y,z coordinates
-  //       return `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${z}/${x}/${y}.png`
-  //     },
-  //     getElevation: ({ r, g, b, a }) => {
-  //       // return elevation in meters for a given DEM tile pixel
-  //       return (r * 256 + g + b / 256) - 32768
-  //     }
-  //   },
-  // }).addTo(map);
-}
+//   // const shadeMap = L.shadeMap({
+//   //   date,    // display shadows for current date
+//   //   color: '#01112f',    // shade color
+//   //   opacity: 0.7,        // opacity of shade color
+//   //   apiKey: "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1haWxAZGFuaWVsYmVla2UubmwiLCJjcmVhdGVkIjoxNjg5OTczODgwNzkyLCJpYXQiOjE2ODk5NzM4ODB9.ncHt7P0kGdSNjbmVwWKWJ-c_mTstyPq55h7h_FUoU5s",    // obtain from https://shademap.app/about/
+//   //   terrainSource: {
+//   //     tileSize: 256,       // DEM tile size
+//   //     maxZoom: 15,         // Maximum zoom of DEM tile set
+//   //     getSourceUrl: ({ x, y, z }) => {
+//   //       // return DEM tile url for given x,y,z coordinates
+//   //       return `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${z}/${x}/${y}.png`
+//   //     },
+//   //     getElevation: ({ r, g, b, a }) => {
+//   //       // return elevation in meters for a given DEM tile pixel
+//   //       return (r * 256 + g + b / 256) - 32768
+//   //     }
+//   //   },
+//   // }).addTo(map);
+// }
 
 export const drawAreaOfInterest = (areaOfInterest: any) => {
   const jsonLayer = L.geoJSON(areaOfInterest, {

@@ -1,4 +1,4 @@
-import { component$, Signal, useContext } from "@builder.io/qwik";
+import { component$, useContext } from "@builder.io/qwik";
 import { useVisibleTask$ } from '@builder.io/qwik';
 import { DocumentContext } from '~/routes/layout';
 import { createMap } from '~/helpers/createMap'
@@ -15,8 +15,6 @@ export default component$(() => {
     window.map.on(L.Draw.Event.CREATED, function (event: any) {
       window.editableLayers.addLayer(event.layer)
       document.value.area_of_interest = window.editableLayers.toGeoJSON()
-
-      console.log(document.value.area_of_interest)
     })
   })
 
