@@ -26,7 +26,7 @@ export default component$((props: { class: string }) => {
       const fileData = await fileHandle.getFile()
       const projectJson = await fileData.text()
       document.value = JSON.parse(projectJson)
-      nav('/' + steps.project.slug) 
+      nav(steps.project.slug) 
        
     }}><Slot /></button>
   );
