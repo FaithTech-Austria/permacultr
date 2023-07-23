@@ -4,6 +4,7 @@ import baseConfig from "../../vite.config";
 
 export default extendConfig(baseConfig, () => {
   return {
+    base: '/permacultur',
     build: {
       ssr: true,
       rollupOptions: {
