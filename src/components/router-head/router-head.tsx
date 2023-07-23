@@ -17,6 +17,7 @@ export const RouterHead = component$(() => {
       <script src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'></script>
       <script src='https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js'></script>
       <script src='https://unpkg.com/leaflet-geosearch@3.8.0/dist/geosearch.umd.js'></script>
+      <script src='https://unpkg.com/leaflet-shadow-simulator@0.30.0/dist/leaflet-shadow-simulator.umd.min.js'></script>
 
       {head.meta.map((m) => (
         <meta key={m.key} {...m} />

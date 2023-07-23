@@ -3,6 +3,8 @@ import { useContext } from '@builder.io/qwik'
 import { DocumentContext } from '~/routes/layout'
 import { useNavigate } from '@builder.io/qwik-city'
 import { steps } from '~/routes/[name]/Steps'
+import { fileOpen } from 'browser-fs-access';
+import type { FileWithHandle } from 'browser-fs-access'
 
 export default component$((props: { class: string }) => {
   const document = useContext(DocumentContext)
@@ -10,24 +12,16 @@ export default component$((props: { class: string }) => {
   return (
     <button class={props.class} onClick$={async () => {
       const pickerOpts = {
-        types: [
-          {
-            description: 'Perma Culture Project',
-            accept: {
-              'perma-culture/text': ['.pcp']
-            }
-          },
-        ],
-        excludeAcceptAllOption: true,
+        extensions: ['.pcp'],
+        description: 'Perma Culture Project',
         multiple: false
       };
       
-      const [fileHandle] = await window.showOpenFilePicker(pickerOpts)
-      const fileData = await fileHandle.getFile()
-      const projectJson = await fileData.text()
+      const file = await fileOpen(pickerOpts) as FileWithHandle
+      console.log(file)
+      const projectJson = await file.text()
       document.value = JSON.parse(projectJson)
-      nav(steps.project.slug) 
-       
+      nav(steps.project.slug)
     }}><Slot /></button>
   );
 });

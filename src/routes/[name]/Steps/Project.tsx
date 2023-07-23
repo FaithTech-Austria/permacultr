@@ -18,7 +18,7 @@ export default {
   
       <div class="mb-3">
         <label for="projectName" class="form-label">Project name</label>
-        <input value={document.name} onChange$={(event: any) => {
+        <input autoComplete="off" value={document.name} onChange$={(event: any) => {
           document.name = event.target.value
         }} class="form-control" id="projectName" />
       </div>

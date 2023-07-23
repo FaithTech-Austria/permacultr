@@ -10,6 +10,7 @@ export default component$(() => {
 
   return (
     <>
+    <div class="d-flex flex-fill">
       <div class="col-3 left region d-flex flex-column">
         <header class="bg-light p-5">
           <Slot name="title"></Slot>
@@ -17,13 +18,14 @@ export default component$(() => {
         <div class="p-5">
           <Slot />
         </div>
-
-        {step.inList ? <StepNavigation /> : null}
       </div>
 
       <div class="col-9 right region">
         <Slot name="right" />
       </div>
+    </div>
+
+      {step.inList ? <StepNavigation /> : null}
     </>
   );
 });
