@@ -16,7 +16,7 @@ export default component$(() => {
       const active = step.slug === currentStep
 
       const output = <Link 
-        href={step.slug} 
+        href={import.meta.env.BASE_URL + step.slug} 
         class={`${active ? 'active' : ''} step ${!passedActive && !active ? 'past' : ''}`}>
           {step.title}
       </Link>
