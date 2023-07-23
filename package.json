@@ -6,7 +6,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "rm -rf docs && qwik build && mv dist docs",
+    "build": "rm -rf docs && qwik build && mv dist/permacultur docs && rm -rf dist",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
     "build.server": "vite build -c adapters/static/vite.config.ts",
