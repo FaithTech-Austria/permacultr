@@ -1,7 +1,7 @@
 import { Slot, component$ } from "@builder.io/qwik";
 import StepNavigation from '~/components/StepNavigation/StepNavigation';
 import { steps } from '~/routes/[name]/Steps';
-import { useLocation } from '@builder.io/qwik-city';
+import { Link, useLocation } from '@builder.io/qwik-city';
 
 export default component$(() => {  
   const loc = useLocation()
@@ -12,7 +12,9 @@ export default component$(() => {
     <>
     <div class="d-flex flex-fill">
       <div class="col-3 left region d-flex flex-column">
+
         <header class="bg-light p-5">
+          {step !== steps.welcome ? <h5><Link href={import.meta.env.BASE_URL}>Permacultur</Link></h5> : null}
           <Slot name="title"></Slot>
         </header>
         <div class="p-5">

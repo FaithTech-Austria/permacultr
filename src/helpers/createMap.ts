@@ -55,12 +55,13 @@ export const drawAreaOfInterest = (areaOfInterest: any) => {
   window.map.fitBounds(jsonLayer.getBounds())
 }
 
-export const createMap = (document: PermaCultureDocument) => {
+export const createMap = (stateDocument: PermaCultureDocument) => {
+  if (document.querySelector('#map')?.classList.contains('leaflet-container')) return
   const map = window.map = L.map('map', { center: [51.505, -0.09], zoom: 19 })
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map)
 
   createGeoSearch()
   createDraw()
 
-  if (document.area_of_interest) drawAreaOfInterest(document.area_of_interest)
+  if (stateDocument.area_of_interest) drawAreaOfInterest(stateDocument.area_of_interest)
 }

@@ -18,9 +18,10 @@ export default component$((props: { class: string }) => {
       };
       
       const file = await fileOpen(pickerOpts) as FileWithHandle
-      console.log(file)
       const projectJson = await file.text()
       document.value = JSON.parse(projectJson)
+      localStorage['permacultur:project'] = projectJson
+      window.handle = file.handle
       nav(steps.project.slug)
     }}><Slot /></button>
   );

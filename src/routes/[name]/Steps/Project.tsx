@@ -14,19 +14,23 @@ export default {
   
     return (
     <SlottedLayout>
-      <h1 q:slot="title">Project settings</h1>
+      <h1 q:slot="title">Project</h1>
   
       <div class="mb-3">
         <label for="projectName" class="form-label">Project name</label>
         <input autoComplete="off" value={document.name} onChange$={(event: any) => {
-          document.name = event.target.value
+          documentSignal.value = Object.assign({}, documentSignal.value, {
+            name: event.target.value
+          })
         }} class="form-control" id="projectName" />
       </div>
   
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea rows={10} onChange$={(event: any) => {
-          document.description = event.target.value
+          documentSignal.value = Object.assign({}, documentSignal.value, {
+            description: event.target.value
+          })
         }} class="form-control" id="description" value={document.description}></textarea>
       </div>
   

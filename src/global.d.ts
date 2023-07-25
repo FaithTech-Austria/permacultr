@@ -7,5 +7,6 @@ export declare global {
   interface Window {
     map: any
     editableLayers: any
+    handle: any
   }
 }
