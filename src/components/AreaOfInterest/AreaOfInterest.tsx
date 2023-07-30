@@ -1,4 +1,4 @@
-import { component$, useContext } from "@builder.io/qwik";
+import { component$, useContext, useSignal, Signal, noSerialize } from "@builder.io/qwik";
 import { useVisibleTask$ } from '@builder.io/qwik';
 import { DocumentContext } from '~/routes/layout';
 import './AreaOfInterest.scss'
@@ -6,56 +6,25 @@ import maplibregl, { Map, LngLatBounds } from 'maplibre-gl';
 import { TerraDrawMapLibreGLAdapter, TerraDraw, TerraDrawSelectMode, TerraDrawPolygonMode } from 'terra-draw'
 import Contour from 'maplibre-contour';
 const { DemSource } = Contour
-
-const addModeChangeHandler = (
-	draw: TerraDraw,
-	currentSelected: { button: undefined | HTMLButtonElement; mode: string }
-) => {
-	[
-		"select",
-		"polygon",
-	].forEach((mode) => {
-		(document.getElementById(mode) as HTMLButtonElement).addEventListener(
-			"click",
-			() => {
-				currentSelected.mode = mode;
-				draw.setMode(currentSelected.mode);
-
-				if (currentSelected.button) {
-					currentSelected.button.style.color = "565656";
-				}
-				currentSelected.button = document.getElementById(
-					mode
-				) as HTMLButtonElement;
-				currentSelected.button.style.color = "#27ccff";
-			}
-		);
-	});
-
-	(document.getElementById("clear") as HTMLButtonElement).addEventListener(
-		"click",
-		() => {
-			draw.clear();
-		}
-	);
-};
-
-
-let currentSelected: { button: undefined | HTMLButtonElement; mode: string } = {
-	button: undefined,
-	mode: "static",
-};
+import 'iconify-icon';
+import { GeocodingControl } from "@maptiler/geocoding-control/maplibregl";
+import "@maptiler/geocoding-control/style.css";
+import "maplibre-gl/dist/maplibre-gl.css";
 
 export default component$(() => {
+  const draw: Signal<TerraDraw | undefined> = useSignal()
+  const map: Signal<Map | undefined> = useSignal()
+  const showContours: Signal<boolean> = useSignal(true)
 
   const document = useContext(DocumentContext)
 
   useVisibleTask$(({ track }) => {
     track(() => document.value)
 
+    const mapTilerKey = import.meta.env.PUBLIC_MAPTILER_KEY
 
     const demSource = new DemSource({
-      url: 'https://api.maptiler.com/tiles/terrain-rgb-v2/{z}/{x}/{y}.webp?key=i9gslr0G5loMzaOVjD8f',
+      url: `https://api.maptiler.com/tiles/terrain-rgb-v2/{z}/{x}/{y}.webp?key=${mapTilerKey}`,
       encoding: 'mapbox',
       maxzoom: 13,
       worker: true
@@ -65,15 +34,15 @@ export default component$(() => {
     /** @ts-ignore */
     demSource.setupMaplibre(maplibregl)
 
-    const map = new Map({
+    map.value = noSerialize(new Map({
       container: 'map',
-      style: 'https://api.maptiler.com/maps/openstreetmap/style.json?key=i9gslr0G5loMzaOVjD8f',
-    })
+      style: `https://api.maptiler.com/maps/openstreetmap/style.json?key=${mapTilerKey}`,
+    }))
 
-    map.on('load', () => {
+    map.value?.on('load', () => {
       if (document.value.area_of_interest) {
 
-        map.addSource('hillshadeSource', {
+        map.value?.addSource('hillshadeSource', {
           type: 'raster-dem',
           // share cached raster-dem tiles with the contour source
           tiles: [demSource.sharedDemProtocolUrl],
@@ -81,7 +50,7 @@ export default component$(() => {
           maxzoom: 13
         })
 
-        map.addSource('contourSourceFeet', {
+        map.value?.addSource('contourSourceFeet', {
           type: 'vector',
           tiles: [
             demSource.contourProtocolUrl({
@@ -106,12 +75,12 @@ export default component$(() => {
           maxzoom: 30
         })
 
-        map.addSource('uploaded-source', {
+        map.value?.addSource('uploaded-source', {
           'type': 'geojson',
           'data': document.value.area_of_interest
         });
     
-        map.addLayer({
+        map.value?.addLayer({
             'id': 'uploaded-polygons',
             'type': 'fill',
             'source': 'uploaded-source',
@@ -125,7 +94,7 @@ export default component$(() => {
             'filter': ['==', '$type', 'Polygon']
         })  
 
-        map.addLayer({
+        map.value?.addLayer({
           id: 'hills',
           type: 'hillshade',
           source: 'hillshadeSource',
@@ -133,7 +102,7 @@ export default component$(() => {
           paint: {'hillshade-exaggeration': 0.25}
         })
 
-        map.addLayer({
+        map.value?.addLayer({
           id: 'contours',
           type: 'line',
           source: 'contourSourceFeet',
@@ -145,7 +114,7 @@ export default component$(() => {
           }
         })
 
-        map.addLayer({
+        map.value?.addLayer({
           id: 'contour-text',
           type: 'symbol',
           source: 'contourSourceFeet',
@@ -167,6 +136,12 @@ export default component$(() => {
           }
         })
 
+        const gc = new GeocodingControl({ apiKey: mapTilerKey, maplibregl, flyTo: {
+          duration: 100
+        } });
+
+        map.value!.addControl(gc);
+
         const coordinates = document.value.area_of_interest.features[0].geometry.coordinates[0][0];
 
         const bounds = new LngLatBounds(coordinates[0],coordinates[0])
@@ -174,12 +149,12 @@ export default component$(() => {
           bounds.extend(coord)
         }
            
-        map.fitBounds(bounds, { padding: 100, animate: false })
+        map.value?.fitBounds(bounds, { padding: 100, animate: false })
 
 
-        const draw = new TerraDraw({
+        draw.value = noSerialize(new TerraDraw({
           adapter: new TerraDrawMapLibreGLAdapter({
-            map,
+            map: map.value!,
             coordinatePrecision: 9,
           }),
           modes: {
@@ -204,25 +179,58 @@ export default component$(() => {
               allowSelfIntersections: false,
             })
           },
-        });
+        }));
   
-        draw.start();
-  
-        addModeChangeHandler(draw, currentSelected);
-
-      }  
+        draw.value?.start()
+      }
     })
   })
 
+  const isExpanded = useSignal(false)
+
   return (
     <>
-      {<div id="map"></div>}    
+        <div class="dropstart map-menu" onClick$={() => { isExpanded.value = !isExpanded.value }}>
+          <button class={`btn btn-secondary ${isExpanded.value ? 'show' : ''}`} type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <iconify-icon icon="line-md:menu"></iconify-icon>
+          </button>
+          <ul class={`dropdown-menu ${isExpanded.value ? 'show' : ''}`}>
+            <li>
+              <button onClick$={() => draw.value?.setMode('select')} class="dropdown-item">
+                <iconify-icon icon="la:hand-pointer-solid"></iconify-icon>&nbsp;
+                <span>Select</span>
+              </button>
+            </li>
+            <li>
+              <button onClick$={() => draw.value?.setMode('polygon')} class="dropdown-item">
+                <iconify-icon icon="gis:polygon-pt"></iconify-icon>&nbsp;
+                <span>Polygon</span>
+              </button>
+            </li>
+            <li>
+              <button onClick$={() => draw.value?.clear()} class="dropdown-item">
+                <iconify-icon icon="bi:trash"></iconify-icon>&nbsp;
+                <span>Clear</span>
+              </button>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <button onClick$={() => {
+                const newValue = !showContours.value
+                showContours.value = newValue
+                map.value!.setLayoutProperty('contours', 'visibility', newValue ? 'visible' : 'none' )
+                map.value!.setLayoutProperty('contour-text', 'visibility', newValue ? 'visible' : 'none' )
+              }} class="dropdown-item" id="clear">
+                {showContours.value ? <><iconify-icon icon="akar-icons:check"></iconify-icon>&nbsp;</> : null }
+                <span>Show contours</span>
+              </button>
+            </li>
+          </ul>
+        </div>
 
-			<button id="select">Select</button>
-			<button id="polygon">Polygon</button>
+      <div id="map">
 
-			<button id="clear">Clear</button>
-
+      </div>
     </>
   )
 })

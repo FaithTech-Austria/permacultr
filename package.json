@@ -24,6 +24,7 @@
   "devDependencies": {
     "@builder.io/qwik": "^1.2.6",
     "@builder.io/qwik-city": "^1.2.6",
+    "@iconify-icon/react": "^1.0.8",
     "@types/eslint": "8.40.2",
     "@types/leaflet": "^1.9.3",
     "@types/node": "^20.4.0",
@@ -40,6 +41,7 @@
     "vite-tsconfig-paths": "4.2.0"
   },
   "dependencies": {
+    "@maptiler/geocoding-control": "^0.0.97",
     "@qwikest/icons": "^0.0.8",
     "browser-fs-access": "^0.34.1",
     "maplibre-contour": "^0.0.3",
