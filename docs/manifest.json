@@ -5,5 +5,13 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fff",
-  "description": "A Qwik project app."
+  "description": "A Qwik project app.",
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "plain/text": [".pcp"]
+      }
+    }
+  ]
 }

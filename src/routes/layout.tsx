@@ -25,6 +25,21 @@ export default component$(() => {
     if (localStorage['permacultur:project']) {
       document.value = JSON.parse(localStorage['permacultur:project'])
     }
+
+    if ("launchQueue" in window) {
+      /** @ts-ignore */
+      window.launchQueue.setConsumer((launchParams) => {
+        if (launchParams.files && launchParams.files.length) {
+          console.log(launchParams)
+        }
+      });
+    }
+
+    if ('launchQueue' in window) {
+      console.log('File Handling API is supported!');
+  } else {
+      console.error('File Handling API is not supported!');
+  }
   })
 
   useComputed$(() => {
