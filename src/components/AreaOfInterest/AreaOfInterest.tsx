@@ -11,6 +11,10 @@ import { GeocodingControl } from "@maptiler/geocoding-control/maplibregl";
 import "@maptiler/geocoding-control/style.css";
 import "maplibre-gl/dist/maplibre-gl.css";
 
+/**
+ * This is a proof of cocept of using MapLibre.
+ * It think it would be great to have a component map that gives a way of extending the map, but also some things that we could toggle.
+ */
 export default component$(() => {
   const draw: Signal<TerraDraw | undefined> = useSignal()
   const map: Signal<Map | undefined> = useSignal()
@@ -18,10 +22,12 @@ export default component$(() => {
 
   const document = useContext(DocumentContext)
 
-  useVisibleTask$(({ track }) => {
+  useVisibleTask$(async ({ track }) => {
     track(() => document.value)
 
     const mapTilerKey = import.meta.env.PUBLIC_MAPTILER_KEY
+
+    const style = await fetch(`https://api.maptiler.com/maps/openstreetmap/style.json?key=${mapTilerKey}`).then(response => response.json())
 
     const demSource = new DemSource({
       url: `https://api.maptiler.com/tiles/terrain-rgb-v2/{z}/{x}/{y}.webp?key=${mapTilerKey}`,
@@ -30,13 +36,12 @@ export default component$(() => {
       worker: true
     });
 
-
     /** @ts-ignore */
     demSource.setupMaplibre(maplibregl)
 
     map.value = noSerialize(new Map({
       container: 'map',
-      style: `https://api.maptiler.com/maps/openstreetmap/style.json?key=${mapTilerKey}`,
+      style
     }))
 
     map.value?.on('load', () => {
@@ -49,7 +54,13 @@ export default component$(() => {
           tileSize: 512,
           maxzoom: 13
         })
-
+  
+        // Enables 3D in the map, seems bad for performance.
+        // map.value!.setTerrain({
+        //   source: 'hillshadeSource',
+        //   exaggeration: 1
+        // })
+    
         map.value?.addSource('contourSourceFeet', {
           type: 'vector',
           tiles: [
@@ -136,6 +147,7 @@ export default component$(() => {
           }
         })
 
+        /** @ts-ignore */
         const gc = new GeocodingControl({ apiKey: mapTilerKey, maplibregl, flyTo: {
           duration: 100
         } });
