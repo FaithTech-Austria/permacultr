@@ -42,9 +42,8 @@
   "dependencies": {
     "@qwikest/icons": "^0.0.8",
     "browser-fs-access": "^0.34.1",
-    "leaflet": "^1.9.4",
-    "leaflet-draw": "^1.0.4",
-    "leaflet-geosearch": "^3.8.0",
-    "leaflet-shadow-simulator": "^0.30.0"
+    "maplibre-contour": "^0.0.3",
+    "maplibre-gl": "^3.2.1",
+    "terra-draw": "^0.0.1-alpha.44"
   }
 }

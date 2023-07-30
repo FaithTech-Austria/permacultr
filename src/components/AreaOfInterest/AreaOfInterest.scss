@@ -1,7 +1,7 @@
 #map {
-  height: 100%;
+  height: calc(100vh - 200px);
 
-  .leaflet-control-attribution, [href="https://www.maptiler.com"] {
+  .maplibregl-ctrl-attrib-inner {
     display: none !important;
   }
 }
