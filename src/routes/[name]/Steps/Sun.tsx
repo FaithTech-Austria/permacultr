@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import SlottedLayout from '../SlottedLayout';
+import SunMap from '~/components/SunMap/SunMap';
 
 export default {
   title: 'Sun',
@@ -8,8 +9,18 @@ export default {
   template: component$(() => (
     <SlottedLayout>
       <h1 q:slot="title">Sun</h1>
-  
-      <img q:slot="right" class="fit" src="https://images.unsplash.com/photo-1625395944199-3f09ebc31e5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" />
+
+      <p>
+        In this step you can add buildings and other big objects that leave a shadow.
+        Think about big trees and roofs.
+      </p>
+
+      <p>
+        The widgets of time and month are here to play with and not definitive. In your final map you can still adjust them.
+      </p>
+
+      <SunMap q:slot="right" />
+
     </SlottedLayout>
   ))
 }

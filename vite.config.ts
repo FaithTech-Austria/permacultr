@@ -5,7 +5,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ command }) => {
   return {
-    base: command === 'build' ? '/permacultr/' : '/',
+    base: '/permacultr/',
     plugins: [qwikCity(), qwikVite(), tsconfigPaths()],
     preview: {
       headers: {

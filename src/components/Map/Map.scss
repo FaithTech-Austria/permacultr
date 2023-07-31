@@ -1,23 +1,9 @@
 #map {
-  height: calc(100vh - 200px);
+  display: flex;
+  flex: 1 1 100%;
+  height: 100%;
 
   .maplibregl-ctrl.maplibregl-ctrl-attrib {
     display: none !important;
   }
-}
-
-.map-menu {
-  position: absolute !important;
-  right: 10px;
-  top: 10px;
-  z-index: 100;
-}
-
-.dropdown-menu {
-  right: 0;
-  top: 50px;
-}
-
-.maplibregl-ctrl-top-right  {
-  margin-top: 50px;
 }

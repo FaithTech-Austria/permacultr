@@ -1,9 +1,13 @@
 import { $ } from "@builder.io/qwik";
-import { LngLatBounds } from 'maplibre-gl';
 import type { Map } from 'maplibre-gl';
 import { TerraDrawMapLibreGLAdapter, TerraDraw, TerraDrawSelectMode, TerraDrawPolygonMode } from 'terra-draw'
+import { zoomToAreaOfInterest } from './zoomToAreaOfInterest';
 
-export const enableDrawAreaOfInterest = $((map: Map, areaOfInterest: any) => {
+export const enableDrawAreaOfInterest = $((map: Map, areaOfInterest: any, onShape: any) => {
+  if (areaOfInterest) {
+    zoomToAreaOfInterest(map, areaOfInterest)
+  }
+
   window.draw = new TerraDraw({
     adapter: new TerraDrawMapLibreGLAdapter({
       map: window.map!,
@@ -27,30 +31,21 @@ export const enableDrawAreaOfInterest = $((map: Map, areaOfInterest: any) => {
         },
       }),
       polygon: new TerraDrawPolygonMode({
-        snapping: true,
-        allowSelfIntersections: false,
+        snapping: false,
+        allowSelfIntersections: true,
       })
     },
   });
 
   window.draw?.start()
-
-  window.draw.addFeatures([areaOfInterest])
-
-  const coordinates = areaOfInterest.geometry.coordinates;
-
-  const bounds = new LngLatBounds()
-
-  for (const coordinateSet of coordinates) {
-    for (const coord of coordinateSet) {
-      bounds.extend(coord)
-    }  
+  
+  if (areaOfInterest) {
+    window.draw.addFeatures([areaOfInterest])
   }
-     
-  map.fitBounds(bounds, { padding: 100, animate: false })
 
   window.draw.on('finish', () => {
     const features = window.draw.getSnapshot()
-    console.log(JSON.stringify(features, null, 2))
+    if (onShape) onShape(features)
+    window.draw.setMode('select')
   })
 })

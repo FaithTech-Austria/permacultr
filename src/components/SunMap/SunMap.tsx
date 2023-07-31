@@ -3,40 +3,26 @@ import { DocumentContext } from '~/routes/layout';
 import type { Map as MapLibre } from 'maplibre-gl'
 import Map from '../Map/Map'
 import type { MapFeature } from '../Map/Map';
-import './AreaOfInterest.scss'
 
 export default component$(() => {
   const documentSignal = useContext(DocumentContext)
 
   const features: Array<MapFeature> = [
-    // 'contour', 
-    // '3d', 
-    'geocode',
-    'drawAreaOfInterest'
+    'contour', 
+    'areaOfInterest',
+    // 'shadow'
   ]
 
   const areaOfInterest = documentSignal.value.area_of_interest
 
   const $onLoad = $((map: MapLibre) => {
-    if (areaOfInterest) {
-      window.draw.setMode('select')
-    }
-    else {
-      // window.draw.setMode('polygon')
-    }
   })
 
-  const $onShape = $((shapes: Array<any>) => {
-    documentSignal.value = Object.assign({}, documentSignal.value, {
-      area_of_interest: shapes[0]
-    })
-  })
   return <div class="area-of-interest">
     <Map 
       features={features} 
       areaOfInterest={areaOfInterest} 
       onLoad$={$onLoad} 
-      onShape$={$onShape}
     />
 
     <div class="area-of-interest-map map-buttons btn-group">
@@ -47,6 +33,10 @@ export default component$(() => {
       <button onClick$={() => window.draw?.setMode('polygon')} class="btn btn-secondary">
         <iconify-icon icon="gis:polygon-pt"></iconify-icon>&nbsp;
         <span>Polygon</span>
+      </button>
+      <button onClick$={() => window.draw?.setMode('circle')} class="btn btn-secondary">
+        <iconify-icon icon="gis:circle-o"></iconify-icon>&nbsp;
+        <span>Circle</span>
       </button>
       <button onClick$={() => window.draw?.clear()} class="btn btn-secondary">
         <iconify-icon icon="bi:trash"></iconify-icon>&nbsp;
