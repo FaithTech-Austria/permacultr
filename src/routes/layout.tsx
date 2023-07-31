@@ -3,9 +3,9 @@ import type { RequestHandler } from "@builder.io/qwik-city";
 import { useContextProvider, createContextId, useComputed$ } from '@builder.io/qwik';
 import { useSignal } from '@builder.io/qwik';
 import type { Signal } from '@builder.io/qwik';
-import { PermaCultureDocument } from '~/types';
+import { permacultreDocument } from '~/types';
 
-export const DocumentContext = createContextId<Signal<PermaCultureDocument>>('document-context')
+export const DocumentContext = createContextId<Signal<permacultreDocument>>('document-context')
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   cacheControl({
@@ -23,8 +23,8 @@ export default component$(() => {
   useContextProvider(DocumentContext, document)
 
   useVisibleTask$(() => {
-    if (localStorage['permacultur:project']) {
-      document.value = JSON.parse(localStorage['permacultur:project'])
+    if (localStorage['permacultr:project']) {
+      document.value = JSON.parse(localStorage['permacultr:project'])
     }
 
     if ("launchQueue" in window) {
@@ -47,7 +47,7 @@ export default component$(() => {
     document.value // We need to touch this proxy.
 
     if (!import.meta.env.SSR) {
-      localStorage['permacultur:project'] = JSON.stringify(document.value)
+      localStorage['permacultr:project'] = JSON.stringify(document.value)
     }
   })
 

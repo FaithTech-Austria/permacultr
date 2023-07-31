@@ -1,4 +1,4 @@
-export type PermaCultureDocument = {
+export type permacultreDocument = {
   name?: string
   description?: string
   area_of_interest?: any

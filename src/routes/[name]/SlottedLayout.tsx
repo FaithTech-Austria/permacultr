@@ -14,7 +14,7 @@ export default component$(() => {
       <div class="col-3 left region d-flex flex-column">
 
         <header class="bg-light p-5">
-          {step !== steps.welcome ? <h5><Link href={import.meta.env.BASE_URL}>Permacultur</Link></h5> : null}
+          {step !== steps.welcome ? <h5><Link href={import.meta.env.BASE_URL}>Permacultr</Link></h5> : null}
           <Slot name="title"></Slot>
         </header>
         <div class="p-5">

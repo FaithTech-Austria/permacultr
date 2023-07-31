@@ -12,7 +12,7 @@ export default component$(() => {
   const hasLocalProject = useSignal(false)
   
   useVisibleTask$(() => {
-    if (localStorage['permacultur:project'] && localStorage['permacultur:project'] !== '{}') hasLocalProject.value = true
+    if (localStorage['permacultr:project'] && localStorage['permacultr:project'] !== '{}') hasLocalProject.value = true
   })
 
   return <div class="btn-group">
@@ -23,14 +23,14 @@ export default component$(() => {
   
     await fileSave(
       blob,
-      { fileName: `${slugify(documentSignal.value.name ?? 'permaculture-project')}.pcp` },
+      { fileName: `${slugify(documentSignal.value.name ?? 'permacultre-project')}.pcp` },
       window.handle
     )
   
   }}><BsSave class="me-2" /> Save</button> : null}
   
   <Link onClick$={() => {
-    localStorage.removeItem('permacultur:project')
+    localStorage.removeItem('permacultr:project')
     documentSignal.value = {}
   }} class="btn-primary btn" href={steps.project.slug}><BsFileEarmarkPlus class="me-2" /> New</Link>
   </div>
