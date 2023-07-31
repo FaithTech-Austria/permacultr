@@ -1,5 +1,6 @@
-import { component$, useSignal, Signal } from "@builder.io/qwik";
+import { component$, useSignal } from "@builder.io/qwik";
 import { useVisibleTask$ } from '@builder.io/qwik';
+import type { PropFunction } from '@builder.io/qwik';
 import { Map } from 'maplibre-gl';
 import { styleJsonUrl } from './constants';
 import * as Iconify from 'iconify-icon';
@@ -13,6 +14,8 @@ import "@maptiler/geocoding-control/style.css";
 import "maplibre-gl/dist/maplibre-gl.css";
 import './Map.scss'
 
+import type { Signal } from '@builder.io/qwik';
+
 type MapFeature = 'contour'
   | 'geocode' 
   | '3d' 
@@ -21,13 +24,13 @@ type MapFeature = 'contour'
 type MapProps = { 
   features: Array<MapFeature>, 
   areaOfInterest?: any, 
-  callback$?: (map: Map) => void 
+  callback$?: PropFunction<(map: Map) => void>;
 }
 
 export default component$(({ features, areaOfInterest, callback$ }: MapProps) => {
   const showContours: Signal<boolean> = useSignal(true)
 
-  useVisibleTask$(async ({ track }) => {
+  useVisibleTask$(async () => {
     Iconify // Make sure the Qwik compiler knows we want iconify in the frontend.
 
     const style = await fetch(styleJsonUrl).then(response => response.json())
@@ -42,7 +45,9 @@ export default component$(({ features, areaOfInterest, callback$ }: MapProps) =>
       if (features.includes('3d')) enable3d(window.map)
       if (features.includes('drawAreaOfInterest')) enableDrawAreaOfInterest(window.map, areaOfInterest)
       if (features.includes('geocode')) enableGeocoder(window.map)
-      if (callback$) callback$(window.map)
+      if (callback$) {
+        callback$(window.map)
+      }
     })
   })
 

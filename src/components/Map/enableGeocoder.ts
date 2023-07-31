@@ -1,5 +1,6 @@
 import { $ } from "@builder.io/qwik";
-import maplibregl, { Map } from 'maplibre-gl';
+import maplibregl from 'maplibre-gl';
+import type { Map } from 'maplibre-gl';
 import { mapTilerKey } from './constants';
 import { GeocodingControl } from "@maptiler/geocoding-control/maplibregl";
 

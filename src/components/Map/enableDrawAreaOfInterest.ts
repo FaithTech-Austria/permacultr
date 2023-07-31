@@ -1,5 +1,6 @@
 import { $ } from "@builder.io/qwik";
-import { Map, LngLatBounds } from 'maplibre-gl';
+import { LngLatBounds } from 'maplibre-gl';
+import type { Map } from 'maplibre-gl';
 import { TerraDrawMapLibreGLAdapter, TerraDraw, TerraDrawSelectMode, TerraDrawPolygonMode } from 'terra-draw'
 
 export const enableDrawAreaOfInterest = $((map: Map, areaOfInterest: any) => {

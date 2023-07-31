@@ -1,7 +1,8 @@
 import { component$, Slot, useVisibleTask$ } from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
 import { useContextProvider, createContextId, useComputed$ } from '@builder.io/qwik';
-import { Signal, useSignal } from '@builder.io/qwik';
+import { useSignal } from '@builder.io/qwik';
+import type { Signal } from '@builder.io/qwik';
 import { PermaCultureDocument } from '~/types';
 
 export const DocumentContext = createContextId<Signal<PermaCultureDocument>>('document-context')
