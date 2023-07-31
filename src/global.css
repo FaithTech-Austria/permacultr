@@ -17,3 +17,7 @@ html, body {
   flex-direction: column;
   width: 100%;
 }
+
+html {
+  max-height: 100vh;
+}
