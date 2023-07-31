@@ -1,4 +1,4 @@
-import { component$, useSignal } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import { useVisibleTask$ } from '@builder.io/qwik';
 import type { PropFunction } from '@builder.io/qwik';
 import { Map } from 'maplibre-gl';
@@ -34,8 +34,6 @@ export default component$(({ features, areaOfInterest, onLoad$, onShape$ }: MapP
     Iconify // Make sure the Qwik compiler knows we want iconify in the frontend.
 
     const style = await fetch(styleJsonUrl).then(response => response.json())
-
-    console.log(styleJsonUrl)
 
     window.map = new Map({
       container: 'map',

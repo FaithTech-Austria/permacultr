@@ -1,1 +1,0 @@
-const s="i9gslr0G5loMzaOVjD8f",t=`https://api.maptiler.com/maps/openstreetmap/style.json?key=${s}`,e=`https://api.maptiler.com/tiles/terrain-rgb-v2/{z}/{x}/{y}.webp?key=${s}`;export{e as D,s as m,t as s};

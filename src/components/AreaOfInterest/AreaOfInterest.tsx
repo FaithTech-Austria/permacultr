@@ -1,6 +1,5 @@
 import { component$, useContext, $ } from "@builder.io/qwik";
 import { DocumentContext } from '~/routes/layout';
-import type { Map as MapLibre } from 'maplibre-gl'
 import Map from '../Map/Map'
 import type { MapFeature } from '../Map/Map';
 import './AreaOfInterest.scss'
@@ -17,12 +16,9 @@ export default component$(() => {
 
   const areaOfInterest = documentSignal.value.area_of_interest
 
-  const $onLoad = $((map: MapLibre) => {
+  const $onLoad = $(() => {
     if (areaOfInterest) {
       window.draw.setMode('select')
-    }
-    else {
-      // window.draw.setMode('polygon')
     }
   })
 
