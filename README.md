@@ -4,7 +4,7 @@ An online tool to create and view Permaculture maps
 
 ## Development
 
-This app is created with (Qwik & QwikCity)[https://qwik.builder.io/docs/].
+This app is created with [Qwik & QwikCity](https://qwik.builder.io/docs/).
 QwikCity is just a set of modules that are used also in the codebase.
 
 - npm install
@@ -13,7 +13,7 @@ QwikCity is just a set of modules that are used also in the codebase.
 ## Deployment
 
 The builds are automatically pushed to the docs folder as a GitHub pages site.
-Live: https://faithtech-austria.github.io/permacultr/
+[Live](https://faithtech-austria.github.io/permacultr/)
 
 - npm run build
 - git push origin master
@@ -28,4 +28,4 @@ Live: https://faithtech-austria.github.io/permacultr/
 
 ## Used APIs
 
-- https://developer.chrome.com/articles/file-handling/
+- [File handling API](https://developer.chrome.com/articles/file-handling/)
