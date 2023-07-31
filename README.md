@@ -1,71 +1,31 @@
-# Qwik City App ⚡️
+# PermaCultr
 
-- [Qwik Docs](https://qwik.builder.io/)
-- [Discord](https://qwik.builder.io/chat)
-- [Qwik GitHub](https://github.com/BuilderIO/qwik)
-- [@QwikDev](https://twitter.com/QwikDev)
-- [Vite](https://vitejs.dev/)
-
----
-
-## Project Structure
-
-This project is using Qwik with [QwikCity](https://qwik.builder.io/qwikcity/overview/). QwikCity is just an extra set of tools on top of Qwik to make it easier to build a full site, including directory-based routing, layouts, and more.
-
-Inside your project, you'll see the following directory structure:
-
-```
-├── public/
-│   └── ...
-└── src/
-    ├── components/
-    │   └── ...
-    └── routes/
-        └── ...
-```
-
-- `src/routes`: Provides the directory-based routing, which can include a hierarchy of `layout.tsx` layout files, and an `index.tsx` file as the page. Additionally, `index.ts` files are endpoints. Please see the [routing docs](https://qwik.builder.io/qwikcity/routing/overview/) for more info.
-
-- `src/components`: Recommended directory for components.
-
-- `public`: Any static assets, like images, can be placed in the public directory. Please see the [Vite public directory](https://vitejs.dev/guide/assets.html#the-public-directory) for more info.
-
-## Add Integrations and deployment
-
-Use the `npm run qwik add` command to add additional integrations. Some examples of integrations includes: Cloudflare, Netlify or Express Server, and the [Static Site Generator (SSG)](https://qwik.builder.io/qwikcity/guides/static-site-generation/).
-
-```shell
-npm run qwik add # or `yarn qwik add`
-```
+An online tool to create and view Permaculture maps
 
 ## Development
 
-Development mode uses [Vite's development server](https://vitejs.dev/). The `dev` command will server-side render (SSR) the output during development.
+This app is created with (Qwik & QwikCity)[https://qwik.builder.io/docs/].
+QwikCity is just a set of modules that are used also in the codebase.
 
-```shell
-npm start # or `yarn start`
-```
+- npm install
+- npm run dev
 
-> Note: during dev mode, Vite may request a significant number of `.js` files. This does not represent a Qwik production build.
+## Deployment
 
-## Preview
+The builds are automatically pushed to the docs folder as a GitHub pages site.
+Live: https://faithtech-austria.github.io/permacultr/
 
-The preview command will create a production build of the client modules, a production build of `src/entry.preview.tsx`, and run a local server. The preview server is only for convenience to preview a production build locally and should not be used as a production server.
+- npm run build
+- git push origin master
 
-```shell
-npm run preview # or `yarn preview`
-```
+## Design values
 
-## Production
+- The end user might have flaky internet
+- This is a tool that helps people create Permaculture maps
+- When we have a domain expert we can improve the app so that it also transfers knowledge
+- By using files instead of a database and users etc we can quickly create value
+- The file based way is much cheaper to host
 
-The production build will generate client and server modules by running both client and server build commands. The build command will use Typescript to run a type check on the source code.
+## Used APIs
 
-```shell
-npm run build # or `yarn build`
-```
-
-## Static Site Generator (Node.js)
-
-```
-npm run build.server
-```
+- https://developer.chrome.com/articles/file-handling/
