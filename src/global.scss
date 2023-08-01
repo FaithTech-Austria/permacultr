@@ -1,0 +1,37 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+
+.fit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.region {
+  position: relative;
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  grid-template-rows: calc(100vh - 100px) 100px;
+  grid-template-areas: "left right"
+  "bottom bottom";
+
+  .left {
+    grid-area: left;
+    position: relative;
+  }
+
+  .right {
+    grid-area: right;
+    position: relative;
+    max-height: calc(100vh - 100px);
+  }
+
+  .bottom {
+    position: relative;
+    grid-area: bottom;
+  }
+}

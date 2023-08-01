@@ -10,8 +10,7 @@ export default component$(() => {
 
   return (
     <>
-    <div class="d-flex flex-fill">
-      <div class="col-3 left region d-flex flex-column">
+      <div class="left">
 
         <header class="bg-light p-5">
           {step !== steps.welcome ? <h5><Link href={import.meta.env.BASE_URL}>Permacultr</Link></h5> : null}
@@ -22,10 +21,9 @@ export default component$(() => {
         </div>
       </div>
 
-      <div class="col-9 right region">
+      <div class="right">
         <Slot name="right" />
       </div>
-    </div>
 
       {step.inList ? <StepNavigation /> : null}
     </>

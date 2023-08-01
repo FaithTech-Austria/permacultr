@@ -27,7 +27,7 @@ export default {
 
       {hasLocalProject.value ? <><Link class="" onClick$={() => {
           documentSignal.value = JSON.parse(localStorage['permacultr:project'])
-        }} href={steps.project.slug}>Continue to your permacultr map</Link></> : null}
+        }} href={steps.project.slug}>Continue to your permacultr map</Link><br /><br /></> : null}
 
       <a download target='_blank' href={`${import.meta.env.BASE_URL}example-project.pcp`}>Download demo project</a>  
 

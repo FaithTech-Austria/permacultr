@@ -27,8 +27,9 @@ export default component$(() => {
       area_of_interest: shapes[0]
     })
   })
-  return <div class="area-of-interest">
+  return <>
     <Map 
+      class="area-of-interest"
       features={features} 
       areaOfInterest={areaOfInterest} 
       onLoad$={$onLoad} 
@@ -50,5 +51,5 @@ export default component$(() => {
       </button>
     </div>
 
-  </div>
+  </>
 })

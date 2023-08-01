@@ -11,6 +11,7 @@ import { enableDrawAreaOfInterest } from './enableDrawAreaOfInterest';
 import { enable3d } from './enable3d';
 import { showAreaOfInterest } from './showAreaOfInterest';
 
+import 'maplibre-gl/src/css/maplibre-gl.css'
 import "@maptiler/geocoding-control/style.css";
 import './Map.scss'
 import { enableShadow } from './enableShadow'
@@ -26,10 +27,13 @@ type MapProps = {
   features: Array<MapFeature>, 
   areaOfInterest?: any, 
   onLoad$?: PropFunction<(map: Map) => void>
-  onShape$?: PropFunction<(shapes: Array<any>) => void>
+  onShape$?: PropFunction<(shapes: Array<any>) => void>,
+  class?: string
 }
 
-export default component$(({ features, areaOfInterest, onLoad$, onShape$ }: MapProps) => {
+export default component$((props: MapProps) => {
+  const { features, areaOfInterest, onLoad$, onShape$ } = props
+
   useVisibleTask$(async () => {
     Iconify // Make sure the Qwik compiler knows we want iconify in the frontend.
 
@@ -60,7 +64,7 @@ export default component$(({ features, areaOfInterest, onLoad$, onShape$ }: MapP
 
   return (
     <>
-      <div id="map"></div>
+      <div id="map" class={props.class ?? ''}></div>
     </>
   )
 })

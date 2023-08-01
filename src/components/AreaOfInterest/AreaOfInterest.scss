@@ -1,15 +1,12 @@
+
+.area-of-interest-map.map-buttons {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .area-of-interest {
-  display: flex;
-  height: 100%;
-  position: relative;
-
-  .map-buttons {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
   .maplibregl-ctrl-top-right {
     width: 100%;
     height: 100px;

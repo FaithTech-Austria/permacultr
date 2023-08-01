@@ -17,7 +17,7 @@ export default component$(() => {
   const $onLoad = $(() => {
   })
 
-  return <div class="area-of-interest">
+  return <>
     <Map 
       features={features} 
       areaOfInterest={areaOfInterest} 
@@ -43,5 +43,5 @@ export default component$(() => {
       </button>
     </div>
 
-  </div>
+  </>
 })
