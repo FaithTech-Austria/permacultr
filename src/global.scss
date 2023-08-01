@@ -15,7 +15,7 @@ body {
   height: 100vh;
   display: grid;
   grid-template-columns: 400px 1fr;
-  grid-template-rows: calc(100vh - 100px) 100px;
+  grid-template-rows: 1fr auto;
   grid-template-areas: "left right"
   "bottom bottom";
 
@@ -27,7 +27,6 @@ body {
   .right {
     grid-area: right;
     position: relative;
-    max-height: calc(100vh - 100px);
   }
 
   .bottom {

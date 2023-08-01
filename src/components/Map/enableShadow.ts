@@ -2,8 +2,8 @@ import { $ } from "@builder.io/qwik";
 import type { CustomLayerInterface, Map } from 'maplibre-gl';
 import { BuildingShadows } from './BuildingShadows';
 
-export const enableShadow = $((map: Map) => {
-  // map.removeLayer('Building')
+export const enableShadow = $((map: Map, date: Date) => {
+  map.removeLayer('Building')
   map.addLayer({
       'id': '3d-buildings',
       "source": "openmaptiles",
@@ -16,6 +16,6 @@ export const enableShadow = $((map: Map) => {
           'fill-extrusion-base': ["number", ["get", "min_height"], 0],
           'fill-extrusion-opacity': 1
       }
-  }, 'Road labels');
-  map.addLayer(new BuildingShadows() as CustomLayerInterface, '3d-buildings');
+  }, 'River labels');
+  map.addLayer(new BuildingShadows(date) as CustomLayerInterface, '3d-buildings');
 })

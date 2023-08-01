@@ -8,27 +8,12 @@ export const showAreaOfInterest = $((map: Map, areaOfInterest: any) => {
   setTimeout(() => {
     const bounds = map.getBounds()
 
-    const box = [
-      [
-        bounds.getWest(),
-        bounds.getNorth(),
-      ],
-      [
-        bounds.getEast(),
-        bounds.getNorth(),
-      ],
-      [
-        bounds.getEast(),
-        bounds.getSouth(),
-      ],
-      [
-        bounds.getWest(),
-        bounds.getSouth(),
-      ],
-      [
-        bounds.getWest(),
-        bounds.getNorth(),
-      ]
+    const worldCover = [
+      [-180, 90],
+      [180, 90],
+      [180, -90],
+      [-180, -90],
+      [-180, 90],
     ]
 
     map.setMinZoom(map.getZoom())
@@ -38,7 +23,7 @@ export const showAreaOfInterest = $((map: Map, areaOfInterest: any) => {
       geometry: {
         type: 'Polygon',
         coordinates: [
-          box,
+          worldCover,
           areaOfInterest.geometry.coordinates[0]
         ]
       }
@@ -55,7 +40,7 @@ export const showAreaOfInterest = $((map: Map, areaOfInterest: any) => {
       'layout': {},
       'paint': {
           'fill-color': '#198754',
-          'fill-opacity': .3
+          'fill-opacity': .7,
       }
     })
     

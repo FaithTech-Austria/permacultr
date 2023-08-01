@@ -29,10 +29,11 @@ type MapProps = {
   onLoad$?: PropFunction<(map: Map) => void>
   onShape$?: PropFunction<(shapes: Array<any>) => void>,
   class?: string
+  date?: Date
 }
 
 export default component$((props: MapProps) => {
-  const { features, areaOfInterest, onLoad$, onShape$ } = props
+  const { features, areaOfInterest, onLoad$, onShape$, date } = props
 
   useVisibleTask$(async () => {
     Iconify // Make sure the Qwik compiler knows we want iconify in the frontend.
@@ -56,7 +57,7 @@ export default component$((props: MapProps) => {
       if (features.includes('contour')) enableContour(window.map)
       if (features.includes('3d')) enable3d(window.map)
       if (features.includes('geocode')) enableGeocoder(window.map)
-      if (features.includes('shadow')) enableShadow(window.map)
+      if (features.includes('shadow')) enableShadow(window.map, date!)
       if (features.includes('areaOfInterest')) showAreaOfInterest(window.map, areaOfInterest)
       if (onLoad$) setTimeout(() => onLoad$(window.map), 200)
     })
