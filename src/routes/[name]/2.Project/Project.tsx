@@ -2,7 +2,7 @@ import { component$ } from "@builder.io/qwik";
 import SlottedLayout from '../SlottedLayout';
 import { DocumentContext } from '~/routes/layout';
 import { useContext } from '@builder.io/qwik';
-import AreaOfInterest from '~/components/AreaOfInterest/AreaOfInterest'
+import EditAreaOfInterest from './EditAreaOfInterest/EditAreaOfInterest'
 
 export default {
   title: 'Project',
@@ -34,7 +34,7 @@ export default {
         }} class="form-control" id="description" value={document.description}></textarea>
       </div>
   
-      <AreaOfInterest q:slot="right" />
+      <EditAreaOfInterest q:slot="right" />
   
     </SlottedLayout>
     )

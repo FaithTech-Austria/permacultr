@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import SlottedLayout from '../SlottedLayout';
-import SunMap from '~/components/SunMap/SunMap';
+import EditShadowMap from './EditShadowMap/EditShadowMap';
 
 export default {
   title: 'Sun',
@@ -23,7 +23,7 @@ export default {
         If you drag the map while holding CTRL you can change the perspective.
       </p>
 
-      <SunMap q:slot="right" />
+      <EditShadowMap q:slot="right" />
 
     </SlottedLayout>
   ))

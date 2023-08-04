@@ -33,14 +33,8 @@ export default component$(() => {
         if (launchParams.files && launchParams.files.length) {
           console.log(launchParams)
         }
-      });
+      })
     }
-
-    if ('launchQueue' in window) {
-      console.log('File Handling API is supported!');
-  } else {
-      console.error('File Handling API is not supported!');
-  }
   })
 
   useComputed$(() => {

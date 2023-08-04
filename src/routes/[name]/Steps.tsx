@@ -1,7 +1,7 @@
-import project from './Steps/Project'
-import welcome from './Steps/Welcome'
-import sun from './Steps/Sun'
-import rain from './Steps/Rain'
+import welcome from './1.Welcome/Welcome'
+import project from './2.Project/Project'
+import sun from './3.Sun/Sun'
+import rain from './4.Rain/Rain'
 
 export const steps = {
   welcome,

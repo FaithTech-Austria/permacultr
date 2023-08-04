@@ -4,19 +4,20 @@ import type { PropFunction } from '@builder.io/qwik';
 import { Map } from 'maplibre-gl';
 import { styleJsonUrl } from './constants';
 import * as Iconify from 'iconify-icon';
+import type { TerraDraw } from 'terra-draw'
 
-import { enableContour } from './enableContour';
-import { enableGeocoder } from './enableGeocoder';
-import { enableDraw } from './enableDraw';
-import { enable3d } from './enable3d';
-import { showAreaOfInterest } from './showAreaOfInterest';
-import { enableSatelite } from './enableSatelite';
+import { enableContour } from './Features/enableContour';
+import { enableGeocoder } from './Features/enableGeocoder';
+import { enableDraw } from './Features/enableDraw';
+import { enable3d } from './Features/enable3d';
+import { showAreaOfInterest } from './Features/showAreaOfInterest';
+import { enableSatelite } from './Features/enableSatelite';
+import { enableShadow } from './Features/enableShadow'
 
 import 'maplibre-gl/src/css/maplibre-gl.css'
 import "@maptiler/geocoding-control/style.css";
 import './Map.scss'
-import { enableShadow } from './enableShadow'
-import type { TerraDraw } from 'terra-draw'
+
 
 export type MapFeature = 'contour'
   | 'geocode' 

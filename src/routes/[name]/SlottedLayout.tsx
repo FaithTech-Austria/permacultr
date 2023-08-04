@@ -3,6 +3,10 @@ import StepNavigation from '~/components/StepNavigation/StepNavigation';
 import { steps } from '~/routes/[name]/Steps';
 import { Link, useLocation } from '@builder.io/qwik-city';
 
+/**
+ * Despite its name, this is a component and not a real Qwik Layout.
+ * For that reason it does work with slots.
+ */
 export default component$(() => {  
   const loc = useLocation()
   const currentStepName = loc.params.name as keyof typeof steps

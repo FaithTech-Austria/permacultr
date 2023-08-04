@@ -1,14 +1,17 @@
 import { $ } from "@builder.io/qwik";
 import type { CustomLayerInterface, Map } from 'maplibre-gl';
-import { BuildingShadows } from './BuildingShadows';
+import { BuildingShadows } from '../MapLibrePlugins/BuildingShadows';
 
+/**
+ * TODO this file needs some work and also the BuildingShadows class.
+ */
 export const enableShadow = $((map: Map, date: Date) => {
   const layersToShadow = {
     openmaptiles: ['building'],
-    'td-polygon': ['_']
+    // 'td-polygon': ['_']
   }
 
-  map.removeLayer('td-polygon-outline')
+  // map.removeLayer('td-polygon-outline')
 
   for (const [base, layers] of Object.entries(layersToShadow)) {
     for (const layer of layers) {

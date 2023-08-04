@@ -1,6 +1,6 @@
 import { $ } from "@builder.io/qwik";
 import type { Map } from 'maplibre-gl';
-import { mapTilerKey } from './constants';
+// import { mapTilerKey } from './constants';
 
 export const enableSatelite = $((map: Map) => {
 

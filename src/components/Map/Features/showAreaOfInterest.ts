@@ -1,6 +1,6 @@
 import { $ } from "@builder.io/qwik";
 import type { Map } from 'maplibre-gl';
-import { zoomToAreaOfInterest } from './zoomToAreaOfInterest';
+import { zoomToAreaOfInterest } from '../helpers/zoomToAreaOfInterest';
 
 export const showAreaOfInterest = $((map: Map, areaOfInterest: any) => {
   zoomToAreaOfInterest(map, areaOfInterest)

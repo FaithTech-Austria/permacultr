@@ -2,7 +2,7 @@ import { component$, useSignal, useVisibleTask$, useContext } from "@builder.io/
 import { steps } from '~/routes/[name]/Steps';
 import { Link } from '@builder.io/qwik-city';
 import { DocumentContext } from '~/routes/layout';
-import LoadButton from '../LoadButton/LoadButton';
+import LoadButton from './LoadButton/LoadButton';
 import { BsSave, BsFolder2Open, BsFileEarmarkPlus } from "@qwikest/icons/bootstrap";
 import { fileSave } from 'browser-fs-access';
 import { slugify } from '~/helpers/slugify';

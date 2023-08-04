@@ -3,7 +3,7 @@ import maplibregl from 'maplibre-gl';
 import type { Map } from 'maplibre-gl';
 import Contour from 'maplibre-contour';
 const { DemSource } = Contour
-import { DEMUrl } from './constants';
+import { DEMUrl } from '../constants';
 
 export const enable3d = $((map: Map) => {
   const demSource = new DemSource({
