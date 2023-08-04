@@ -19,6 +19,10 @@ export default {
         The widgets of time and month are here to play with and not definitive. In your final map you can still adjust them.
       </p>
 
+      <p>
+        If you drag the map while holding CTRL you can change the perspective.
+      </p>
+
       <SunMap q:slot="right" />
 
     </SlottedLayout>

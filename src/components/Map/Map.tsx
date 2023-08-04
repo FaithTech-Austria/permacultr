@@ -7,26 +7,29 @@ import * as Iconify from 'iconify-icon';
 
 import { enableContour } from './enableContour';
 import { enableGeocoder } from './enableGeocoder';
-import { enableDrawAreaOfInterest } from './enableDrawAreaOfInterest';
+import { enableDraw } from './enableDraw';
 import { enable3d } from './enable3d';
 import { showAreaOfInterest } from './showAreaOfInterest';
+import { enableSatelite } from './enableSatelite';
 
 import 'maplibre-gl/src/css/maplibre-gl.css'
 import "@maptiler/geocoding-control/style.css";
 import './Map.scss'
 import { enableShadow } from './enableShadow'
+import type { TerraDraw } from 'terra-draw'
 
 export type MapFeature = 'contour'
   | 'geocode' 
   | '3d' 
-  | 'drawAreaOfInterest'
+  | 'draw'
   | 'areaOfInterest'
   | 'shadow'
+  | 'satelite'
 
 type MapProps = { 
   features: Array<MapFeature>, 
   areaOfInterest?: any, 
-  onLoad$?: PropFunction<(map: Map) => void>
+  onLoad$?: PropFunction<(map: Map, draw: TerraDraw) => void>
   onShape$?: PropFunction<(shapes: Array<any>) => void>,
   class?: string
   date?: Date
@@ -53,13 +56,14 @@ export default component$((props: MapProps) => {
     })
 
     window.map.on('load', () => {
-      if (features.includes('drawAreaOfInterest')) enableDrawAreaOfInterest(window.map, areaOfInterest, onShape$)
+      if (features.includes('draw')) enableDraw(window.map, areaOfInterest, onShape$)
       if (features.includes('contour')) enableContour(window.map)
       if (features.includes('3d')) enable3d(window.map)
+      if (features.includes('satelite')) enableSatelite(window.map)
       if (features.includes('geocode')) enableGeocoder(window.map)
-      if (features.includes('shadow')) enableShadow(window.map, date!)
       if (features.includes('areaOfInterest')) showAreaOfInterest(window.map, areaOfInterest)
-      if (onLoad$) setTimeout(() => onLoad$(window.map), 200)
+      if (features.includes('shadow')) setTimeout(() => enableShadow(window.map, date!), 200)
+      if (onLoad$) setTimeout(() => onLoad$(window.map, window.draw), 200)
     })
   })
 

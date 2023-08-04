@@ -16,9 +16,6 @@ export const showAreaOfInterest = $((map: Map, areaOfInterest: any) => {
       [-180, 90],
     ]
 
-    map.setMinZoom(map.getZoom())
-    map.setMaxBounds(bounds)
-
     const outcut = Object.assign({}, areaOfInterest, {
       geometry: {
         type: 'Polygon',

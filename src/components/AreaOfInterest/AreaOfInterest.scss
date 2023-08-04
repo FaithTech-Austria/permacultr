@@ -4,6 +4,11 @@
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
+
+  select {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 }
 
 .area-of-interest {

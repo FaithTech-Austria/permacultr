@@ -1,12 +1,14 @@
 import SunCalc from 'suncalc'
 
 export class BuildingShadows {
-  constructor(date) {
-      this.date = date
-      this.id = 'building-shadows';
-      this.type = 'custom';
-      this.renderingMode = '3d';
-      this.opacity = 0.5;
+  constructor(baseLayer, sourceLayer, date) {
+    this.baseLayer = baseLayer
+    this.sourceLayer = sourceLayer
+    this.date = date
+    this.id = sourceLayer + 'shadows'
+    this.type = 'custom';
+    this.renderingMode = '3d';
+    this.opacity = 0.5;
   }
 
   onAdd(map, gl) {
@@ -74,9 +76,9 @@ export class BuildingShadows {
   render(gl, matrix) {
       gl.useProgram(this.program);
 
-      const source = this.map.style.sourceCaches['openmaptiles'];
+      const source = this.map.style.sourceCaches[this.baseLayer];
       const coords = source.getVisibleCoordinates().reverse();
-      const buildingsLayer = map.getLayer('3d-buildings');
+      const buildingsLayer = map.getLayer(this.sourceLayer);
       const context = this.map.painter.context;
 
       const {lng, lat} = this.map.getCenter();
@@ -99,7 +101,7 @@ export class BuildingShadows {
           const bucket = tile.getBucket(buildingsLayer);
           if (!bucket) continue;
 
-          const [heightBuffer, baseBuffer] = bucket.programConfigurations.programConfigurations['3d-buildings']._buffers;
+          const [heightBuffer, baseBuffer] = bucket.programConfigurations.programConfigurations[this.sourceLayer]._buffers;
 
           gl.uniformMatrix4fv(this.uMatrix, false, coord.posMatrix);
           gl.uniform1f(this.uHeightFactor, Math.pow(2, coord.overscaledZ) / tile.tileSize / 8);

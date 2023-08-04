@@ -3,31 +3,46 @@ import { DocumentContext } from '~/routes/layout';
 import Map from '../Map/Map'
 import type { MapFeature } from '../Map/Map';
 import './SunMap.scss'
+import type { Map as MapLibre } from 'maplibre-gl'
+import type { TerraDraw } from 'terra-draw'
 
 export default component$(() => {
   const documentSignal = useContext(DocumentContext)
-  const dateSignal = useSignal(new Date())
+  const defaultDate = new Date()
+  defaultDate.setHours(12)
+  const dateSignal = useSignal(defaultDate)
 
   const features: Array<MapFeature> = [
-    'contour', 
     'areaOfInterest',
+    'draw',
     'shadow'
   ]
 
   const areaOfInterest = documentSignal.value.area_of_interest
 
-  const $onLoad = $(() => {
+  const $onLoad = $((map: MapLibre, draw: TerraDraw) => {
+    const sunFeatures = documentSignal.value.sun
+    if (sunFeatures) draw.addFeatures(sunFeatures)
+
+    map.setPitch(90)
   })
+
   const dt = new Date(dateSignal.value)
   dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset())
   
+  const $onShape = $((shapes: Array<any>) => {
+    documentSignal.value = Object.assign({}, documentSignal.value, {
+      sun: shapes
+    })
+  })
 
   return <>
     <Map 
       date={dateSignal.value}
       features={features} 
       areaOfInterest={areaOfInterest} 
-      onLoad$={$onLoad} 
+      onLoad$={$onLoad}
+      onShape$={$onShape}
     />
 
     <div class="area-of-interest-map map-buttons btn-group">
