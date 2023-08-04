@@ -6,8 +6,6 @@ export const showAreaOfInterest = $((map: Map, areaOfInterest: any) => {
   zoomToAreaOfInterest(map, areaOfInterest)
 
   setTimeout(() => {
-    const bounds = map.getBounds()
-
     const worldCover = [
       [-180, 90],
       [180, 90],

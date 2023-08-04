@@ -1,1 +1,0 @@
-import{B as t,O as o,c as e,_ as r}from"./q-e9d9a766.js";const a=t("document-context"),c=()=>{throw"Symbol removed by Qwik Optimizer, it can not be called from current platform"},m=o(e(()=>r(()=>import("./q-243910da.js"),["build/q-243910da.js","build/q-e9d9a766.js"]),"s_VKFlAWJuVm8"));export{a as DocumentContext,m as default,c as onGet};
