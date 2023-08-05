@@ -14,14 +14,18 @@
 body {
   height: 100vh;
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: 220px 570px 1fr;
   grid-template-rows: 1fr auto;
-  grid-template-areas: "left right"
-  "bottom bottom";
+  grid-template-areas: "menu left right";
+
+  &[data-step="welcome"] {
+    grid-template-areas: "left left right";
+  }
 
   .left {
     grid-area: left;
     position: relative;
+    border-right: 1px solid rgb(199, 199, 199);
   }
 
   .right {
@@ -29,8 +33,25 @@ body {
     position: relative;
   }
 
-  .bottom {
+  .menu {
+    grid-area: menu;
     position: relative;
-    grid-area: bottom;
   }
 }
+
+.btn-primary, :root {
+  --bs-primary: #198754;
+  --bs-btn-bg: #198754;
+  --bs-link-hover-color-rgb: 25, 135, 84;
+  --bs-link-color-rgb: 25, 135, 84;
+
+  --bs-btn-bg: #198754;
+  --bs-btn-border-color: #198754;
+  --bs-btn-hover-bg: #198754;
+  --bs-btn-hover-border-color: #198754;
+  --bs-btn-focus-shadow-rgb: 25, 135, 84;
+  --bs-btn-active-border-color: #198754;
+  --bs-btn-disabled-bg: #198754;
+  --bs-btn-disabled-border-color: #198754;
+}
+

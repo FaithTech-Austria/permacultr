@@ -63,8 +63,8 @@ export default component$((props: MapProps) => {
       if (features.includes('satelite')) enableSatelite(window.map)
       if (features.includes('geocode')) enableGeocoder(window.map)
       if (features.includes('areaOfInterest')) showAreaOfInterest(window.map, areaOfInterest)
-      if (features.includes('shadow')) setTimeout(() => enableShadow(window.map, date!), 200)
-      if (onLoad$) setTimeout(() => onLoad$(window.map, window.draw), 200)
+      if (features.includes('shadow')) enableShadow(window.map, date!)
+      if (onLoad$) onLoad$(window.map, window.draw)
     })
   })
 

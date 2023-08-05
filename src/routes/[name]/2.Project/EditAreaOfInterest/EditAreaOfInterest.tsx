@@ -5,7 +5,7 @@ import type { MapFeature } from '../../../../components/Map/Map';
 import './EditAreaOfInterest.scss'
 import type { Map as MapLibre } from 'maplibre-gl'
 import type { TerraDraw } from 'terra-draw'
-import { zoomToAreaOfInterest } from '../../../../components/Map/helpers/zoomToAreaOfInterest';
+import { zoomToAreaOfInterest } from '~/components/Map/helpers/zoomToAreaOfInterest';
 
 export default component$(() => {
   const documentSignal = useContext(DocumentContext)

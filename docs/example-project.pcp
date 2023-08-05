@@ -1,7 +1,7 @@
 {
   "name": "Example project",
   "description": "Lorem ipsum",
-  "area_of_interest": {
+  "area_of_interest": [{
     "id": "d482302d-6ace-443c-adae-1ec2d86e4c3e",
     "type": "Feature",
     "geometry": {
@@ -72,5 +72,5 @@
       "createdAt": 1690808539334,
       "updatedAt": 1690808579021
     }
-  }
+  }]
 }

@@ -1,4 +1,4 @@
-import { Slot, component$ } from "@builder.io/qwik";
+import { Slot, component$, useVisibleTask$ } from "@builder.io/qwik";
 import StepNavigation from '~/components/StepNavigation/StepNavigation';
 import { steps } from '~/routes/[name]/Steps';
 import { Link, useLocation } from '@builder.io/qwik-city';
@@ -12,8 +12,14 @@ export default component$(() => {
   const currentStepName = loc.params.name as keyof typeof steps
   const step = currentStepName in steps ? steps[currentStepName] : steps.welcome
 
+  useVisibleTask$(() => {
+    document.body.dataset.step = currentStepName ?? 'welcome'
+  })
+
   return (
     <>
+      {step.inList ? <StepNavigation /> : null}
+
       <div class="left">
 
         <header class="bg-light p-5">
@@ -28,8 +34,6 @@ export default component$(() => {
       <div class="right">
         <Slot name="right" />
       </div>
-
-      {step.inList ? <StepNavigation /> : null}
     </>
   );
 });

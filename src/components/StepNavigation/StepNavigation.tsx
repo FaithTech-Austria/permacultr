@@ -3,13 +3,15 @@ import { steps } from '~/routes/[name]/Steps';
 import { useLocation } from '@builder.io/qwik-city';
 import { Link } from '@builder.io/qwik-city';
 import './StepNavigation.scss'
+import SaveButton from '../Buttons/SaveButton/SaveButton'
 
 export default component$(() => {
   const loc = useLocation()
   const currentStep = loc.params.name as keyof typeof steps
   let passedActive = false
 
-  return <div class="d-flex justify-content-between bg-light steps ps-5 pe-5 col-12 bottom">
+  return <div class="steps menu">
+    <div class="steps-inner">
     {Object.values(steps)
     .filter((step) => step.inList)
     .map((step) => {
@@ -25,5 +27,7 @@ export default component$(() => {
 
       return output
     })}
+    </div>
+    <SaveButton />
   </div>
 })

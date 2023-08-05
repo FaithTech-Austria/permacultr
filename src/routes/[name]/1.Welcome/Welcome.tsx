@@ -19,17 +19,15 @@ export default {
     })
 
     return <SlottedLayout>
-      <h1 q:slot="title">permacultr</h1>
+      <h1 q:slot="title">PermaCultr</h1>
   
-      <p q:slot="title">An online tool to create and view permacultre maps</p>
+      <p q:slot="title">An online tool to create and view PermaCultr maps</p>
   
       <Buttons /><br /><br />
 
       {hasLocalProject.value ? <><Link class="" onClick$={() => {
           documentSignal.value = JSON.parse(localStorage['permacultr:project'])
-        }} href={steps.project.slug}>Continue to your permacultr map</Link><br /><br /></> : null}
-
-      <a download target='_blank' href={`${import.meta.env.BASE_URL}example-project.pcp`}>Download demo project</a>  
+        }} href={steps.project.slug}>Continue to your PermaCultr map</Link><br /><br /></> : null}
 
       <img q:slot="right" class="fit" src="https://images.unsplash.com/photo-1625395944199-3f09ebc31e5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" />
     </SlottedLayout>

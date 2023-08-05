@@ -1,0 +1,1 @@
+import{p as r}from"./q-7b203fc8.js";const t=e=>{e.addSource("satelite",{type:"raster",tiles:["https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"],maxzoom:21,tileSize:256}),e.addLayer({id:"satelite-layer",type:"raster",source:"satelite",layout:{visibility:"none"}})};export{r as _hW,t as s_vSpkSmk6ylE};
