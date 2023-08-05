@@ -11,11 +11,13 @@ export default component$(() => {
   const defaultDate = new Date()
   defaultDate.setHours(12)
   const dateSignal = useSignal(defaultDate)
+  const sateliteVisibility = useSignal('none')
 
   const features: Array<MapFeature> = [
     'areaOfInterest',
     'draw',
-    'shadow'
+    'shadow',
+    'satelite'
   ]
 
   const areaOfInterest = documentSignal.value.area_of_interest
@@ -72,6 +74,17 @@ export default component$(() => {
         <iconify-icon icon="bi:trash"></iconify-icon>&nbsp;
         <span>Clear</span>
       </button>
+
+      <div>
+        <select class="form-select" value={sateliteVisibility.value} onChange$={(event) => {
+          const visibility = event.target.value
+          sateliteVisibility.value = visibility           
+          window.map.setLayoutProperty('satelite-layer', 'visibility', visibility)
+        }}>
+          <option value="none">Streets</option>
+          <option value="visible">Satelite</option>
+        </select>
+      </div>
     </div>
 
   </>

@@ -14,15 +14,13 @@ export const showAreaOfInterest = $((map: Map, areaOfInterest: any) => {
       [-180, 90],
     ]
 
-    const outcut = Object.assign({}, areaOfInterest, {
-      geometry: {
-        type: 'Polygon',
-        coordinates: [
-          worldCover,
-          areaOfInterest.geometry.coordinates[0]
-        ]
-      }
-    })
+    const outcut = {
+      type: 'Polygon',
+      coordinates: [
+        worldCover,
+        ...areaOfInterest.flatMap((feature: any) => feature.geometry.coordinates)
+      ]
+    }
 
     map.addSource('AOI', {
       'type': 'geojson',
@@ -35,7 +33,7 @@ export const showAreaOfInterest = $((map: Map, areaOfInterest: any) => {
       'layout': {},
       'paint': {
           'fill-color': '#198754',
-          'fill-opacity': .7,
+          'fill-opacity': .5,
       }
     })
     

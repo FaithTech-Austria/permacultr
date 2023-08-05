@@ -21,7 +21,8 @@ export default component$(() => {
 
   const $onLoad = $((map: MapLibre, draw: TerraDraw) => {
     if (areaOfInterest) {
-      draw.addFeatures([areaOfInterest])
+      console.log(areaOfInterest)
+      draw.addFeatures(areaOfInterest)
       zoomToAreaOfInterest(map, areaOfInterest)
     }
   
@@ -31,9 +32,8 @@ export default component$(() => {
   })
 
   const $onShape = $((shapes: Array<any>) => {
-    console.log(shapes)
     documentSignal.value = Object.assign({}, documentSignal.value, {
-      area_of_interest: shapes[0]
+      area_of_interest: shapes
     })
   })
   
